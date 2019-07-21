@@ -15,7 +15,7 @@ export class MemberDetailResolver implements Resolve<User> {
     resolve(route: ActivatedRouteSnapshot) : Observable<User>{
         return this.userService.geTuser(route.params['id']).pipe(
             catchError(error => {
-                this.alertify.error('Problem retriving data');
+                this.alertify.error('Problem z przetworzeniem danych');
                 this.router.navigate(['/members']);
                 return of(null);
             })

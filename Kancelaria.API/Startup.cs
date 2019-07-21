@@ -55,7 +55,7 @@ namespace Kancelaria.API
                 };
             });
 
-            services.AddScoped<IKancelariaRepository, kancelariaRepository>();
+            services.AddScoped<IKancelariaRepository, KancelariaRepository>();
 
             services.AddTransient<Seed>();
         }

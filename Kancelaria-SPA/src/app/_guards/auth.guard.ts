@@ -14,7 +14,7 @@ constructor (private authService : AuthService, private router: Router, private 
     if(this.authService.loggedIn()){
       return true;
     }
-    this.alertify.error('You shall not pass!!!');
+    this.alertify.error('Brak dostępu');
     this.router.navigate(['/home']);
     return false;
   }

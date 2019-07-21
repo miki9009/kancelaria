@@ -1,0 +1,47 @@
+.icon-cell{
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    width: 50px;
+    height: 30px;
+}
+
+.icon-cell-text{
+    width: 70px;
+    height: 70px;
+}
+
+.icon-cell p{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+.icon-cell p button{
+    width: 45px;
+    height: 45px;
+    padding: 0 0 0 0;
+    margin: 5px 0 0 10px;
+}
+
+.icon-cell p button i .fa {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+#datatable thead{
+    height: 20px;
+}
+
+#datatable thead tr{
+    background-color: #2C3E50;
+    color: white;
+    height: 20px;
+}
+
+#datatable thead tr th{
+    text-align: center;
+    border-bottom-width: 3px;
+}
+
+#datatable tbody tr td{
+    text-align: center;
+}

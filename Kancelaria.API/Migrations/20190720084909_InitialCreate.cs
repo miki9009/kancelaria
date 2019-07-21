@@ -8,6 +8,19 @@ namespace Kancelaria.API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "CasesDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CaseID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CasesDetails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -36,38 +49,39 @@ namespace Kancelaria.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Photos",
+                name: "Cases",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Url = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    DateAdded = table.Column<DateTime>(nullable: false),
-                    IsMain = table.Column<bool>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    caseName = table.Column<string>(nullable: true),
+                    CaseDetailID = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Photos", x => x.Id);
+                    table.PrimaryKey("PK_Cases", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Photos_Users_UserId",
+                        name: "FK_Cases_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Photos_UserId",
-                table: "Photos",
+                name: "IX_Cases_UserId",
+                table: "Cases",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Photos");
+                name: "Cases");
+
+            migrationBuilder.DropTable(
+                name: "CasesDetails");
 
             migrationBuilder.DropTable(
                 name: "Values");

@@ -10,7 +10,7 @@ namespace Kancelaria.API.Models
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
 
-        public ICollection<Photo> Photos { get; set; }
+        public ICollection<Case> Cases { get; set; }
  
     }
 }

@@ -25,6 +25,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list-resolver';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { CasesListComponent } from './cases/cases-list/cases-list.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -40,7 +41,8 @@ export function tokenGetter() {
       ListsComponent,
       MessegesComponent,
       MemberCardComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      CasesListComponent
    ],
    imports: [
       BrowserModule,

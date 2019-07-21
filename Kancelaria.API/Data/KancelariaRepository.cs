@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kancelaria.API.Data
 {
-    public class kancelariaRepository : IKancelariaRepository
+    public class KancelariaRepository : IKancelariaRepository
     {
         readonly DataContext _context;
-        public kancelariaRepository(DataContext context)
+        public KancelariaRepository(DataContext context)
         {
                 _context = context;
         }
@@ -24,14 +24,14 @@ namespace Kancelaria.API.Data
 
         public Task<User> GetUser(int id)
         {
-            var user = _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);
+            var user = _context.Users.Include(p => p.Cases).FirstOrDefaultAsync(u => u.Id == id);
 
             return user;
         }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            return await _context.Users.Include(p=>p.Photos).ToListAsync();
+            return await _context.Users.Include(p=>p.Cases).ToListAsync();
         }
 
 

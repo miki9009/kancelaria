@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kancelaria.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190720081353_InitialCreate")]
+    [Migration("20190720084909_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,26 +18,34 @@ namespace Kancelaria.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
-            modelBuilder.Entity("Kancelaria.API.Models.Photo", b =>
+            modelBuilder.Entity("Kancelaria.API.Models.Case", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<int>("CaseDetailID");
 
-                    b.Property<string>("Description");
+                    b.Property<int?>("UserId");
 
-                    b.Property<bool>("IsMain");
-
-                    b.Property<string>("Url");
-
-                    b.Property<int>("UserId");
+                    b.Property<string>("caseName");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Photos");
+                    b.ToTable("Cases");
+                });
+
+            modelBuilder.Entity("Kancelaria.API.Models.CaseDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CaseID");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CasesDetails");
                 });
 
             modelBuilder.Entity("Kancelaria.API.Models.User", b =>
@@ -68,12 +76,11 @@ namespace Kancelaria.API.Migrations
                     b.ToTable("Values");
                 });
 
-            modelBuilder.Entity("Kancelaria.API.Models.Photo", b =>
+            modelBuilder.Entity("Kancelaria.API.Models.Case", b =>
                 {
-                    b.HasOne("Kancelaria.API.Models.User", "User")
-                        .WithMany("Photos")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("Kancelaria.API.Models.User")
+                        .WithMany("Cases")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
