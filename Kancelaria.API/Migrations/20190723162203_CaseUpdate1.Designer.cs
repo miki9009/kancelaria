@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kancelaria.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190720084909_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190723162203_CaseUpdate1")]
+    partial class CaseUpdate1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,15 +23,23 @@ namespace Kancelaria.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CaseDetailID");
+                    b.Property<int?>("CaseDetailID");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("CaseName");
 
-                    b.Property<string>("caseName");
+                    b.Property<bool>("Closed");
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("Leader");
+
+                    b.Property<string>("Signature");
+
+                    b.Property<int?>("UserID");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Cases");
                 });
@@ -52,6 +60,8 @@ namespace Kancelaria.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email");
 
                     b.Property<byte[]>("PasswordHash");
 
@@ -80,7 +90,7 @@ namespace Kancelaria.API.Migrations
                 {
                     b.HasOne("Kancelaria.API.Models.User")
                         .WithMany("Cases")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserID");
                 });
 #pragma warning restore 612, 618
         }

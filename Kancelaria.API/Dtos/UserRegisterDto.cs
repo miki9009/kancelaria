@@ -9,6 +9,10 @@ namespace Kancelaria.API.Dtos
         public string Username { get; set; }
 
         [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
         [StringLength(25, MinimumLength = 8, ErrorMessage = "Password must have from 8 to 25 characters")]
         public string Password { get; set; }
     }

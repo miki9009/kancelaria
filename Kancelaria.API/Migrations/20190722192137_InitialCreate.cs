@@ -26,6 +26,7 @@ namespace Kancelaria.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Email = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(nullable: true),
                     PasswordHash = table.Column<byte[]>(nullable: true),
                     PasswordSalt = table.Column<byte[]>(nullable: true)
@@ -54,25 +55,27 @@ namespace Kancelaria.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    caseName = table.Column<string>(nullable: true),
-                    CaseDetailID = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: true)
+                    CaseName = table.Column<string>(nullable: true),
+                    Signature = table.Column<string>(nullable: true),
+                    Leader = table.Column<string>(nullable: true),
+                    UserID = table.Column<int>(nullable: true),
+                    CaseDetailID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cases", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cases_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Cases_Users_UserID",
+                        column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cases_UserId",
+                name: "IX_Cases_UserID",
                 table: "Cases",
-                column: "UserId");
+                column: "UserID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -45,3 +45,58 @@
 #datatable tbody tr td{
     text-align: center;
 }
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .popup {
+      background-color: white;
+      width: 500px;
+      height: auto;
+      margin: auto;
+      margin-top: 5%;
+      border-radius: 5px;
+  }
+
+  .close-button{
+    float: right;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(209, 42, 30);
+    border-radius: 5px;
+    border-color: rgb(209, 42, 30);
+  }
+
+  .close-button i{
+      color: white;
+  }
+
+  .label{
+    background-color: #2C3E50;
+    padding: 10px 10px 10px 10px;
+    color: white;
+    text-align: center;
+    font: 900;
+  }
+
+
+.form-label-center{
+    width: 100%;
+    text-align: center;
+    font: bolder;
+    font-size: 125%;
+}
+
+.submit-center{
+    align-content: center;
+}

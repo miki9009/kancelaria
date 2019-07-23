@@ -1,4 +1,80 @@
+<script src="bootstrap-datepicker.pl.js" charset="UTF-8"></script>
 <div class="container">
+
+    <div class="overlay" *ngIf="createNewCase">
+      <div class="popup">
+          <button type="button" class="button close-button" (click)="showCreatePopup()" aria-label="Close"><i class="fa fa-times fa-2x"></i>
+            </button>
+            <div class="label">
+                <h4>Nowa Sprawa</h4>
+            </div>
+            <br/>
+            <div class="col-md-12" >
+                <form class="center-block" #registerForm="ngForm" (ngSubmit)="register()">
+                      <div class="form-group input-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"> <i class="fa fa-balance-scale"></i> </span>
+                           </div>
+                          <input name="signature" class="form-control" placeholder="Sygnatura"  type="text" [(ngModel)]="model.signature">
+
+                      </div> <!-- form-group// -->
+                      
+                      <div class="form-group input-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"> <i class="fa fa-edit"></i> </span>
+                           </div>
+                          <input name="caseName" class="form-control" placeholder="Nazwa sprawy" type="text" [(ngModel)]="model.caseName">
+                      </div> <!-- form-group// -->
+
+                      <div class="form-group row">
+                          <label for="inputState" class="col-sm-4">Prowadzona przez</label>
+                          <div class="col-sm-8">
+                              <select id="inputState" class="form-control">
+                                  <option selected>Wybierz...</option>
+                                  <option>Jan</option>
+                                  <option>Anna</option>
+                                  <option>Władysław</option>
+                                </select>
+                          </div>                         
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label >Data założenia</label>
+                            <input id="picker1" type="date" name="bday" max="2030-12-31" 
+                                   min="1000-01-01" class="form-control">
+                           </div> -->
+                           
+                           <div class="container">
+                              <div class="row">
+                                  <div class='col-sm-6'>
+                                      <div class="form-group">
+                                          <div class='input-group date' id='datetimepicker1'>
+                                              <input type='text' class="form-control" />
+                                              <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-calendar"></span>
+                                              </span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <script type="text/javascript">
+                                      $(function () {
+                                          $('#datetimepicker1').datetimepicker();
+                                      });
+                                  </script>
+                              </div>
+                          </div>
+                      <div class="d-flex justify-content-center">
+                          <button type="submit" class="btn btn-primary col-md-5">Stwórz</button>
+                      </div>
+
+
+                  </form>
+            </div>
+            <br/>
+
+      </div>
+    </div>
+
     <div class="d-flex justify-content-center">
         <h2 class="text-center"><strong>Sprawy</strong></h2>
     </div>
@@ -7,10 +83,13 @@
 		
             <div class="col-md-12">
 
+              <div class="d-inline">
+                  <button (click)="showCreatePopup()" class="btn btn-primary p-3">Stwórz nową</button>
+              </div>
                 <nav class="navbar navbar-light bg-light float-right">
                     <form class="form-inline ">
                       <input class="form-control mr-sm-2" type="search" placeholder="szukaj" aria-label="Search">
-                      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Szukaj</button>
+                      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Szukaj </button>
                     </form>
                   </nav>
             
@@ -28,10 +107,11 @@
 						</tr>
           </thead>
           
-					<tbody>
+					<tbody *ngFor="let case of cases">
+     
 						<tr>
-							<td style="font-size: 130%"><strong>112/30</strong></td>
-							<td><em>Sprawa o odszkodwanie</em></td>
+							<td style="font-size: 130%"><strong>{{case.signature}}</strong></td>
+							<td><em>{{case.caseName}}</em></td>
 							<td>12.07.2019</td>
 							<td>W toku</td>
 							<td>Monika</td>
@@ -101,3 +181,4 @@
   </div>
       <!-- /.modal-dialog --> 
     </div>
+
