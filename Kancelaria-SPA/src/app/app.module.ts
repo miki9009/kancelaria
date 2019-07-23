@@ -26,6 +26,9 @@ import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list-resolver';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { CasesListComponent } from './cases/cases-list/cases-list.component';
+import { DatepickerComponent} from './datepicker/datepicker.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -42,7 +45,8 @@ export function tokenGetter() {
       MessegesComponent,
       MemberCardComponent,
       MemberDetailComponent,
-      CasesListComponent
+      CasesListComponent,
+      DatepickerComponent,
    ],
    imports: [
       BrowserModule,
@@ -53,6 +57,8 @@ export function tokenGetter() {
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
+      BrowserAnimationsModule,
+      BsDatepickerModule.forRoot(),
       JwtModule.forRoot({
          config: {
             tokenGetter: tokenGetter,

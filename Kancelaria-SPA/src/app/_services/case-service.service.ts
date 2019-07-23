@@ -24,7 +24,6 @@ createCase(model: any) {
 
 
 getCases(): Observable<Case[]>{
-  console.log(this.baseUrl);
   console.log(this.http.get(this.baseUrl));
   return this.http.get<Case[]>(this.baseUrl);
 }

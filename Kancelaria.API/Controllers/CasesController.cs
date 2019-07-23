@@ -37,7 +37,7 @@ namespace Kancelaria.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CreateCaseDto createCaseDto)
         {
-            var c = new Case(){CaseName = createCaseDto.CaseName, Signature = createCaseDto.Signature};
+            var c = new Case(){CaseName = createCaseDto.CaseName, Signature = createCaseDto.Signature, DateAdded = createCaseDto.DateAdded};
             await _context.Cases.AddAsync(c);
             await _context.SaveChangesAsync();
             return StatusCode(201);
