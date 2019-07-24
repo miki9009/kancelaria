@@ -36,9 +36,7 @@ namespace Kancelaria.API.Controllers
         {
             var user = await _repository.GetUser(id);
 
-            var userToReturn = _mapper.Map<UserForDetailsDto>(user);
-
-            return Ok(userToReturn);
+            return Ok(user);
         }
     }
 }

@@ -29,14 +29,14 @@ login(model: any) {
   );
 }
 
-register(model: any){
+register(model: any) {
+  console.log(this.baseUrl + 'register');
   return this.http.post(this.baseUrl + 'register', model);
 }
 
-loggedIn(){
+loggedIn() {
   const token = localStorage.getItem('token');
-  //return !this.jwtHelper.isTokenExpired(token);
-  return token != null;
+  return !this.jwtHelper.isTokenExpired(token);
 }
 
 }

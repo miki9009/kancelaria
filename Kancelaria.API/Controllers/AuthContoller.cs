@@ -39,7 +39,8 @@ namespace Kancelaria.API.Controllers
 
             var userToCreate = new User
             {
-                UserName = userRegisterDto.Username
+                UserName = userRegisterDto.Username,
+                Email = userRegisterDto.Email
             };
 
             var createdUser = await _repository.Register(userToCreate, userRegisterDto.Password);

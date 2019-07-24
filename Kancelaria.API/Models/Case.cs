@@ -6,8 +6,20 @@ namespace Kancelaria.API.Models
     {
         public int Id { get; set; }
 
-        public string caseName { get; set; }    
+        public string CaseName { get; set; }   
 
-        public int CaseDetailID { get; set; }     
+        public string Signature { get; set;}
+
+        public string Leader {get; set;}
+
+        public bool Closed {get;set;}
+
+        public DateTime DateAdded { get; set; }
+
+        public int? UserID { get; set; } 
+
+        public int? CaseDetailID { get; set; }
+
+
     }
 }

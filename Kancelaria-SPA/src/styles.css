@@ -53,6 +53,11 @@
     border-top: 1px solid #eee;
     padding: 15px 0;
   }
+
+  .bs-datepicker-head{
+    background-color: #2C3E50 !important;
+}
+
   /*
   /////////////////////////////////////////////////////////////////
   */
