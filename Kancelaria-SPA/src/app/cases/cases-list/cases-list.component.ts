@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { CaseServiceService } from 'src/app/_services/case-service.service';
 import { Case } from 'src/app/_models/case';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cases-list',
@@ -17,11 +16,13 @@ export class CasesListComponent implements OnInit {
 
 
   createNewCase: boolean;
+  delete: boolean;
   count: number;
   model: any = {};
   cases: Case[];
+  caseIndex: number;
 
-  constructor(private alertify: AlertifyService, private caseService: CaseServiceService, private route: ActivatedRoute) { }
+  constructor(private alertify: AlertifyService, private caseService: CaseServiceService) { }
 
 
   ngOnInit() {
@@ -56,8 +57,7 @@ export class CasesListComponent implements OnInit {
     window.location.reload();
 }
 
-  deleteCase(id: number){
-    // console.log('id is: ' + id);
+  deleteCase(id: number) {
     this.caseService.deleteCase(id).subscribe(() => {
       this.alertify.success('Sprawa usunięta');
       this.ngOnInit();
@@ -66,6 +66,18 @@ export class CasesListComponent implements OnInit {
         this.alertify.error('Nie udało się usunąć sprawy');
       });
   }
+
+  deleteCaseCurrent() {
+    this.deleteCase(this.caseIndex);
+    this.delete = false;
+  }
+
+  showDeletePopup(id: number) {
+    console.log('caseID: ' + id);
+    this.caseIndex = id;
+    this.delete = !this.delete;
+  }
+
   }
 
   

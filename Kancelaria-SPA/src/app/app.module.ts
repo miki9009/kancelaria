@@ -28,7 +28,7 @@ import { MemberListResolver } from './_resolvers/member-list-resolver';
 import { CasesListComponent } from './cases/cases-list/cases-list.component';
 // import { DatepickerComponent} from './datepicker/datepicker.component';
 
-//Global locales
+// Global locales
 import { BsDatepickerModule, BsLocaleService, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { plLocale } from 'ngx-bootstrap/locale';
@@ -85,11 +85,11 @@ export function tokenGetter() {
    ]
 })
 
-export class AppModule { 
+export class AppModule {
    locale = 'pl';
    public dpConfig: Partial<BsDatepickerConfig> = new BsDatepickerConfig();
  
-   constructor(private localeService: BsLocaleService) { 
+   constructor(private localeService: BsLocaleService) {
      this.dpConfig.containerClass = 'theme-dark-blue';
      defineLocale('pl', plLocale);
      this.localeService.use('pl');

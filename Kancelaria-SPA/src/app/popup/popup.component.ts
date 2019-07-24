@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-popup',
@@ -7,9 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopupComponent implements OnInit {
 
+  @Input() show: boolean;
+  @Input() title: string;
+  @Input() message: string;
+  @Output() showChanged = new EventEmitter<boolean>();
+  @Output() okPress = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  changeShowToFalse() {
+    this.show = false;
+    this.showChanged.emit(this.show);
+    console.log(this.show);
+  }
+
+  okPressed() {
+    this.okPress.emit();
+  }
+
+  cancelPressed() {
+    this.changeShowToFalse();
   }
 
 }
