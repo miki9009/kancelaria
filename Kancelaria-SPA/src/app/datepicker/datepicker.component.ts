@@ -3,6 +3,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { plLocale } from 'ngx-bootstrap/locale';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-datepicker',
@@ -13,6 +14,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 export class DatepickerComponent implements OnInit {
   @Input() name: string;
+  @Input() model: any;
 
   locale = 'pl';
   public dpConfig: Partial<BsDatepickerConfig> = new BsDatepickerConfig();

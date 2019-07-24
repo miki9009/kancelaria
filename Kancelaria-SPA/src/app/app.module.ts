@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, defineLocale } from 'ngx-bootstrap';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessegesComponent } from './messeges/messeges.component';
@@ -24,11 +24,15 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list-resolver';
-import { NgxGalleryModule } from 'ngx-gallery';
+// import { NgxGalleryModule } from 'ngx-gallery';
 import { CasesListComponent } from './cases/cases-list/cases-list.component';
-import { DatepickerComponent} from './datepicker/datepicker.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+// import { DatepickerComponent} from './datepicker/datepicker.component';
+
+//Global locales
+import { BsDatepickerModule, BsLocaleService, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { plLocale } from 'ngx-bootstrap/locale';
+import { PopupComponent } from './popup/popup.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -46,7 +50,7 @@ export function tokenGetter() {
       MemberCardComponent,
       MemberDetailComponent,
       CasesListComponent,
-      DatepickerComponent,
+      PopupComponent
    ],
    imports: [
       BrowserModule,
@@ -56,7 +60,6 @@ export function tokenGetter() {
       TabsModule.forRoot(),
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
-      NgxGalleryModule,
       BrowserAnimationsModule,
       BsDatepickerModule.forRoot(),
       JwtModule.forRoot({
@@ -81,4 +84,14 @@ export function tokenGetter() {
       AppComponent
    ]
 })
-export class AppModule { }
+
+export class AppModule { 
+   locale = 'pl';
+   public dpConfig: Partial<BsDatepickerConfig> = new BsDatepickerConfig();
+ 
+   constructor(private localeService: BsLocaleService) { 
+     this.dpConfig.containerClass = 'theme-dark-blue';
+     defineLocale('pl', plLocale);
+     this.localeService.use('pl');
+   }
+}

@@ -5,4 +5,6 @@ export interface Case {
     signature: string;
     leader: string;
     userID: number;
+    dateAdded: Date;
+
 }

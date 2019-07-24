@@ -15,18 +15,34 @@ constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 baseUrl =  environment.apiUrl  + 'cases';
 
 createCase(model: any) {
+  // console.log(model);
   const token = localStorage.getItem('token');
   const decodeToken = this.jwtHelper.decodeToken(token);
   model.userID = decodeToken.nameid;
+  // console.log(model);
   return this.http.post(this.baseUrl, model);
 }
 
 
 
-getCases(): Observable<Case[]>{
-  console.log(this.http.get(this.baseUrl));
+getCases(): Observable<Case[]> {
+  // console.log(this.http.get(this.baseUrl));
   return this.http.get<Case[]>(this.baseUrl);
 }
 
+deleteCase(id: number) {
+
+  // const options = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //   }),
+  // };
+  
+  return this.http.delete(this.baseUrl + '/' + id);
 
 }
+
+}
+
+
+

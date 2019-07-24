@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kancelaria.API.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CasesController : ControllerBase
@@ -37,7 +37,12 @@ namespace Kancelaria.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CreateCaseDto createCaseDto)
         {
-            var c = new Case(){CaseName = createCaseDto.CaseName, Signature = createCaseDto.Signature, DateAdded = createCaseDto.DateAdded};
+            var c = new Case()
+            {
+                CaseName = createCaseDto.CaseName, 
+                Signature = createCaseDto.Signature, 
+                DateAdded = createCaseDto.DateAdded
+                };
             await _context.Cases.AddAsync(c);
             await _context.SaveChangesAsync();
             return StatusCode(201);
@@ -52,9 +57,16 @@ namespace Kancelaria.API.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-
+            var _case = await _context.Cases.SingleOrDefaultAsync(x=>x.Id == id);
+            if(_case != null)
+            {
+                _context.Cases.Remove(_case);
+                await _context.SaveChangesAsync();
+                return StatusCode(200);
+            }
+            return StatusCode(404);
         }
     }
 }
